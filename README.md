@@ -7,12 +7,11 @@ This is a angular 6 component for get mobile number of user, this component impl
 - set country based on form value
 
 # Installation
-`npm install mobile-field-lib`
+```npm install mobile-field-lib```
 
 # How to use
 Import module to your main module
-`
-...
+```ts
 import {MobileFieldLibModule} from "../../projects/mobile-field-lib/src/lib/mobile-field-lib.module";
 
 @NgModule({
@@ -27,7 +26,9 @@ MobileFieldLibModule
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-`
+```
 
 use it at you html template
-`<mfl-mobile-field-lib [country]="'UK'"></mfl-mobile-field-lib>`
+```html
+<mfl-mobile-field-lib [country]="'UK'"></mfl-mobile-field-lib>
+```
