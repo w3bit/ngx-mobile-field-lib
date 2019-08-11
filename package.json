@@ -13,7 +13,7 @@
     "npm-pack": "cd dist/mobile-field-lib && npm pack",
     "package": "npm run build-lib && npm run npm_pack",
     "commit": "git-cz",
-    "travis-deploy-once": "travis-deploy-once --pro",
+    "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
   "private": true,
