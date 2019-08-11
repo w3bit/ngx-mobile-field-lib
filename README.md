@@ -8,6 +8,9 @@ This is a angular > 2.x module to get mobile (phone) number of user, this compon
 - show country dial code
 - set country based on form value
 
+# Demo
+[See this example](https://w3bit.github.io/ngx-mobile-field-lib)
+
 # Installation
 ```npm install mobile-field-lib```
 
