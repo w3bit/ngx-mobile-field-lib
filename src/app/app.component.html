@@ -4,6 +4,9 @@
   </h1>
 </div>
 <div style="max-width: 500px; margin: auto; padding: 2em; ">
-  <mfl-mobile-field-lib [country]="'GB'" [preferredCountries]="['US', 'GB', 'NO']"></mfl-mobile-field-lib>
+  <form [formGroup]="registerForm">
+  <mfl-mobile-field-lib [country]="'GB'" [preferredCountries]="['US', 'GB', 'NO']" formControlName="mobile"></mfl-mobile-field-lib>
+  </form>
+  {{registerForm.value.mobile}}
 </div>
 
