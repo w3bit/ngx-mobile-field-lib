@@ -7,14 +7,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   template: `
       <div class="mfl-wrapper">
           <div class="mfl-select-menu">
-              <select [(ngModel)]="selected_country" (change)="change()" [ngClass]="selectClasses">
+              <select [(ngModel)]="selected_country" (ngModelChange)="changeHandler()" [ngClass]="selectClasses">
                   <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
               </select>
           </div>
           <div class="dial-code">{{selected_country.flag}} {{selected_country.dial_code}}</div>
           <div class="input-box">
-              <input type="number" [(ngModel)]="mobile_number" numbersOnly="" (change)="change()"
-                     [ngClass]="inputClasses">
+              <input type="numer" [(ngModel)]="mobile_number" numbersOnly="" (ngModelChange)="changeHandler()" [ngClass]="inputClasses">
           </div>
       </div>
   `,
@@ -68,8 +67,6 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
       multi: true
     }
   ]
-
-
 })
 export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
 
@@ -148,8 +145,7 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  propagateChange = (_: any) => {
-  }
+  propagateChange = (_: any) => {};
 
   registerOnChange(fn) {
     this.propagateChange = fn;
@@ -158,13 +154,12 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
   registerOnTouched() {
   }
 
-  change(): void {
+  changeHandler(): void {
     let value = '';
     if (this.mobile_number.length > 2) {
       value = this.selected_country.dial_code + this.mobile_number;
     }
     this.propagateChange(value);
-    console.log(value);
   }
 
 }
