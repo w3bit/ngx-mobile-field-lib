@@ -526,8 +526,7 @@ var MobileFieldLibComponent = /** @class */ (function () {
         this.countries = [];
         this.selected_country = null;
         this.mobile_number = '';
-        this.propagateChange = function (_) {
-        };
+        this.propagateChange = function (_) { };
     }
     MobileFieldLibComponent_1 = MobileFieldLibComponent;
     MobileFieldLibComponent.prototype.ngOnInit = function () {
@@ -600,13 +599,12 @@ var MobileFieldLibComponent = /** @class */ (function () {
     };
     MobileFieldLibComponent.prototype.registerOnTouched = function () {
     };
-    MobileFieldLibComponent.prototype.change = function () {
+    MobileFieldLibComponent.prototype.changeHandler = function () {
         var value = '';
         if (this.mobile_number.length > 2) {
             value = this.selected_country.dial_code + this.mobile_number;
         }
         this.propagateChange(value);
-        console.log(value);
     };
     var MobileFieldLibComponent_1;
     __decorate([
@@ -630,7 +628,7 @@ var MobileFieldLibComponent = /** @class */ (function () {
     MobileFieldLibComponent = MobileFieldLibComponent_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'mfl-mobile-field-lib',
-            template: "\n      <div class=\"mfl-wrapper\">\n          <div class=\"mfl-select-menu\">\n              <select [(ngModel)]=\"selected_country\" (change)=\"change()\" [ngClass]=\"selectClasses\">\n                  <option *ngFor=\"let country of countries\" [ngValue]=\"country\">{{country.name}}</option>\n              </select>\n          </div>\n          <div class=\"dial-code\">{{selected_country.flag}} {{selected_country.dial_code}}</div>\n          <div class=\"input-box\">\n              <input type=\"number\" [(ngModel)]=\"mobile_number\" numbersOnly=\"\" (change)=\"change()\"\n                     [ngClass]=\"inputClasses\">\n          </div>\n      </div>\n  ",
+            template: "\n      <div class=\"mfl-wrapper\">\n          <div class=\"mfl-select-menu\">\n              <select [(ngModel)]=\"selected_country\" (ngModelChange)=\"changeHandler()\" [ngClass]=\"selectClasses\">\n                  <option *ngFor=\"let country of countries\" [ngValue]=\"country\">{{country.name}}</option>\n              </select>\n          </div>\n          <div class=\"dial-code\">{{selected_country.flag}} {{selected_country.dial_code}}</div>\n          <div class=\"input-box\">\n              <input type=\"numer\" [(ngModel)]=\"mobile_number\" numbersOnly=\"\" (ngModelChange)=\"changeHandler()\" [ngClass]=\"inputClasses\">\n          </div>\n      </div>\n  ",
             styles: [
                 "\n          .mfl-wrapper {\n              width: 100%;\n              display: flex;\n              border: 1px solid #eee;\n              border-radius: 5px;\n              direction: ltr;\n          }\n\n          select {\n              height: 100%;\n              width: 100%;\n              border: none;\n              outline: none;\n              padding: 0px 5px;\n          }\n\n          input {\n              outline: none;\n              padding: 7px 5px 8px 5px;\n              border: none;\n              width: 100%;\n              border-radius: 5px;\n              box-sizing: border-box;\n          }\n\n          div.dial-code {\n              padding: 3px 10px 3px 10px;\n              color: #999;\n              font-size: 0.8em;\n              min-width: 50px;\n          }\n\n          .mfl-select-menu {\n              flex-grow: 4;\n          }\n\n          .input-box {\n              flex-grow: 7;\n          }\n    "
             ],
@@ -737,7 +735,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\n  <h1>\n    Test mobile field library\n  </h1>\n</div>\n<div style=\"max-width: 500px; margin: auto; padding: 2em; \">\n  <mfl-mobile-field-lib [country]=\"'GB'\" [preferredCountries]=\"['US', 'GB', 'NO']\"></mfl-mobile-field-lib>\n</div>\n\n"
+module.exports = "<div style=\"text-align:center\">\n  <h1>\n    Test mobile field library\n  </h1>\n</div>\n<div style=\"max-width: 500px; margin: auto; padding: 2em; \">\n  <form [formGroup]=\"registerForm\">\n  <mfl-mobile-field-lib [country]=\"'GB'\" [preferredCountries]=\"['US', 'GB', 'NO']\" formControlName=\"mobile\"></mfl-mobile-field-lib>\n  </form>\n  {{registerForm.value.mobile}}\n</div>\n\n"
 
 /***/ }),
 
@@ -752,23 +750,33 @@ module.exports = "<div style=\"text-align:center\">\n  <h1>\n    Test mobile fie
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(fb) {
+        this.fb = fb;
         this.title = 'mobile-field-app';
+        this.registerForm = this.fb.group({
+            mobile: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+        });
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -791,12 +799,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _projects_mobile_field_lib_src_lib_mobile_field_lib_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../projects/mobile-field-lib/src/lib/mobile-field-lib.module */ "./projects/mobile-field-lib/src/lib/mobile-field-lib.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -811,6 +821,8 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
                 _projects_mobile_field_lib_src_lib_mobile_field_lib_module__WEBPACK_IMPORTED_MODULE_3__["MobileFieldLibModule"]
             ],
             providers: [],
