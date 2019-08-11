@@ -32,5 +32,5 @@ export class AppModule { }
 
 use it at you html template:
 ```html
-<mfl-mobile-field-lib [country]="'GB'" [preferredCountries]="['GB', 'US', 'NK']"></mfl-mobile-field-lib>
+<mfl-mobile-field-lib [country]="'GB'" [preferredCountries]="['GB', 'US', 'NO']"></mfl-mobile-field-lib>
 ```
