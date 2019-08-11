@@ -1,7 +1,9 @@
-# Angular 6 reactive form mobile number field
-This is a angular 6 component for get mobile number of user, this component implements ControlValueAccessor interface to compatible to reactive forms.
+# Angular reactive form mobile number field
+This is a angular > 2.x module to get mobile (phone) number of user, this component implements ControlValueAccessor interface to compatible with reactive forms.
 # main features
 - country list
+- Set preferred countries list
+- Support country flags
 - default country selection
 - show country dial code
 - set country based on form value
@@ -12,15 +14,15 @@ This is a angular 6 component for get mobile number of user, this component impl
 # How to use
 Import module to your main module
 ```ts
-import {MobileFieldLibModule} from "../../projects/mobile-field-lib/src/lib/mobile-field-lib.module";
+import {MobileFieldLibModule} from "mobile-field-lib";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-...,
-MobileFieldLibModule
+    ...,
+    MobileFieldLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -28,7 +30,7 @@ MobileFieldLibModule
 export class AppModule { }
 ```
 
-use it at you html template
+use it at you html template:
 ```html
-<mfl-mobile-field-lib [country]="'UK'"></mfl-mobile-field-lib>
+<mfl-mobile-field-lib [country]="'GB'" [preferredCountries]="['GB', 'US', 'NK']"></mfl-mobile-field-lib>
 ```

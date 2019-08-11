@@ -1,6 +1,6 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {COUNTRIES} from "./countries";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {COUNTRIES} from './countries';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'mfl-mobile-field-lib',
@@ -19,69 +19,75 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
   `,
   styles: [
       `
-          .mfl-wrapper{
+          .mfl-wrapper {
               min-width: 320px;
               display: flex;
           }
+
           select {
               width: 100%;
           }
-          input{
+
+          input {
               text-indent: 50px;
               width: 100%;
           }
-          span.dial-code{
+
+          span.dial-code {
               position: absolute;
               top: 2px;
               padding-left: 10px;
               color: #999;
               font-size: 0.8em;
           }
-          .mfl-select-menu{
+
+          .mfl-select-menu {
               width: 28%;
-              min-width:120px;
+              min-width: 120px;
           }
-          .input-box{
+
+          .input-box {
               width: 72%;
               min-width: 200px;
               position: relative;
           }
     `
   ],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => MobileFieldLibComponent),
-            multi: true
-        }
-    ]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MobileFieldLibComponent),
+      multi: true
+    }
+  ]
 
 
 })
 export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
 
-  private _country: string = 'GB';
+  private _country = 'GB';
   private _preferred_countries = ['GB'];
 
   countries = [];
   selected_country = null;
   mobile_number = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.countries = COUNTRIES.filter(i => this._preferred_countries.indexOf(i.code) !== -1 );
+    this.countries = COUNTRIES.filter(i => this._preferred_countries.indexOf(i.code) !== -1);
     this.selected_country = this.countries[0];
   }
 
   get country(): string {
-      return this._country;
+    return this._country;
   }
 
   @Input()
   set country(c: string) {
-      this.selected_country = this.findCountryByCode(c);
-      this._country = c;
+    this.selected_country = this.findCountryByCode(c);
+    this._country = c;
   }
 
   get preferredCountries(): string[] {
@@ -94,55 +100,57 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value: any) {
-      if (value !== undefined) {
-          let country = this.findCountryByNumber(value.toString(),3);
-          if(country) {
-              this.selected_country = country;
-              this.mobile_number = value.toString().substring(country.dial_code.length-1);
-          }
+    if (value !== undefined) {
+      const country = this.findCountryByNumber(value.toString(), 3);
+      if (country) {
+        this.selected_country = country;
+        this.mobile_number = value.toString().substring(country.dial_code.length - 1);
       }
+    }
   }
 
-  findCountryByCode(code: string){
-      for(let country of this.countries){
-          if (country.code == code.toLocaleUpperCase()) {
-              return country;
-              break;
-          }
+  findCountryByCode(code: string) {
+    for (const country of this.countries) {
+      if (country.code === code.toLocaleUpperCase()) {
+        return country;
+        break;
       }
-      return this.countries[233];
+    }
+    return this.countries[233];
   }
 
-  findCountryByNumber(number:string, max_dial_code_len:number) {
-      let dial_code = number.substr(0,max_dial_code_len);
-      for(let country of this.countries){
-          if (country.dial_code == ('+'+dial_code)) {
-              return country;
-              break;
-          }
+  findCountryByNumber(number: string, max_dial_code_len: number) {
+    const dial_code = number.substr(0, max_dial_code_len);
+    for (const country of this.countries) {
+      if (country.dial_code === ('+' + dial_code)) {
+        return country;
+        break;
       }
-      if (max_dial_code_len>1) {
-          this.findCountryByNumber(number, max_dial_code_len-1);
-      }else {
-          return null;
-      }
+    }
+    if (max_dial_code_len > 1) {
+      this.findCountryByNumber(number, max_dial_code_len - 1);
+    } else {
+      return null;
+    }
   }
 
-  propagateChange = (_: any) => {};
+  propagateChange = (_: any) => {
+  }
 
   registerOnChange(fn) {
-      this.propagateChange = fn;
+    this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched() {
+  }
 
   change(): void {
-      let value = '';
-      if(this.mobile_number.length > 2){
-          value = this.selected_country.dial_code+this.mobile_number;
-      }
-      this.propagateChange(value);
-      console.log(value)
+    let value = '';
+    if (this.mobile_number.length > 2) {
+      value = this.selected_country.dial_code + this.mobile_number;
+    }
+    this.propagateChange(value);
+    console.log(value);
   }
 
 }

@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { MobileFieldLibService } from './mobile-field-lib.service';
+import {MobileFieldLibService} from './mobile-field-lib.service';
 
 describe('MobileFieldLibService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MobileFieldLibComponent } from './mobile-field-lib.component';
+import {MobileFieldLibComponent} from './mobile-field-lib.component';
 
 describe('MobileFieldLibComponent', () => {
   let component: MobileFieldLibComponent;
@@ -8,9 +8,9 @@ describe('MobileFieldLibComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MobileFieldLibComponent ]
+      declarations: [MobileFieldLibComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

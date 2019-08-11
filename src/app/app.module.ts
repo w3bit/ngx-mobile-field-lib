@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {MobileFieldLibModule} from "../../projects/mobile-field-lib/src/lib/mobile-field-lib.module";
+import {MobileFieldLibModule} from 'mobile-field-lib';
 
 @NgModule({
   declarations: [
