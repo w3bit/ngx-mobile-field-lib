@@ -17,7 +17,7 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
-  local-dir: dist/mobile-field-lib
+  local-dir: dist/mobile-field-app
   on:
     branch: master
 
