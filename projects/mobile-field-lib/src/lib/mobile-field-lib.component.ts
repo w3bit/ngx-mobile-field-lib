@@ -145,7 +145,7 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  propagateChange = (_: any) => {}
+  propagateChange = (_: any) => {};
 
   registerOnChange(fn) {
     this.propagateChange = fn;
