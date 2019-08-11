@@ -1,7 +1,6 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {COUNTRIES} from './countries';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'mfl-mobile-field-lib',
@@ -14,7 +13,8 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
           </div>
           <div class="dial-code">{{selected_country.flag}} {{selected_country.dial_code}}</div>
           <div class="input-box">
-              <input type="number" [(ngModel)]="mobile_number" numbersOnly="" (change)="change()" [ngClass]="inputClasses">
+              <input type="number" [(ngModel)]="mobile_number" numbersOnly="" (change)="change()"
+                     [ngClass]="inputClasses">
           </div>
       </div>
   `,
@@ -34,6 +34,7 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
               outline: none;
               padding: 0px 5px;
           }
+
           input {
               outline: none;
               padding: 7px 5px 8px 5px;
@@ -42,15 +43,18 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
               border-radius: 5px;
               box-sizing: border-box;
           }
+
           div.dial-code {
               padding: 3px 10px 3px 10px;
               color: #999;
               font-size: 0.8em;
               min-width: 50px;
           }
+
           .mfl-select-menu {
               flex-grow: 4;
           }
+
           .input-box {
               flex-grow: 7;
           }
@@ -71,8 +75,8 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
   private _country = 'GB';
   private _preferred_countries = [];
 
-  @Input() inputClasses='';
-  @Input() selectClasses='';
+  @Input() inputClasses = '';
+  @Input() selectClasses = '';
 
   countries = [];
   selected_country = null;
@@ -121,7 +125,7 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
 
   findCountryByCode(code: string) {
     code = code.toLocaleUpperCase();
-    if(this.countries.length){
+    if (this.countries.length) {
       return this.countries.reduce((p, c) => (c.code === code) ? c : p);
     } else {
       return this.countries[0];
