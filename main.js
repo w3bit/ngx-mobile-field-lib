@@ -1,31 +1,15 @@
-import { __values } from 'tslib';
-import { Injectable, NgModule, defineInjectable, Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var MobileFieldLibService = /** @class */ (function () {
-    function MobileFieldLibService() {
-    }
-    MobileFieldLibService.decorators = [
-        { type: Injectable, args: [{
-                    providedIn: 'root'
-                },] }
-    ];
-    /** @nocollapse */
-    MobileFieldLibService.ctorParameters = function () { return []; };
-    /** @nocollapse */ MobileFieldLibService.ngInjectableDef = defineInjectable({ factory: function MobileFieldLibService_Factory() { return new MobileFieldLibService(); }, token: MobileFieldLibService, providedIn: "root" });
-    return MobileFieldLibService;
-}());
+/***/ "./projects/mobile-field-lib/src/lib/countries.ts":
+/*!********************************************************!*\
+  !*** ./projects/mobile-field-lib/src/lib/countries.ts ***!
+  \********************************************************/
+/*! exports provided: COUNTRIES */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COUNTRIES", function() { return COUNTRIES; });
 var COUNTRIES = [
     { 'name': 'Afghanistan', 'dial_code': '+93', 'code': 'AF', 'flag': '🇦🇫' },
     { 'name': 'Åland Islands', 'dial_code': '+358', 'code': 'AX', 'flag': '🇦🇽' },
@@ -505,43 +489,62 @@ var COUNTRIES = [
     { 'name': 'Zimbabwe', 'dial_code': '+263', 'code': 'ZW', 'flag': '🇿🇼' }
 ];
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
+
+/***/ }),
+
+/***/ "./projects/mobile-field-lib/src/lib/mobile-field-lib.component.ts":
+/*!*************************************************************************!*\
+  !*** ./projects/mobile-field-lib/src/lib/mobile-field-lib.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: MobileFieldLibComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MobileFieldLibComponent", function() { return MobileFieldLibComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _countries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./countries */ "./projects/mobile-field-lib/src/lib/countries.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 var MobileFieldLibComponent = /** @class */ (function () {
     function MobileFieldLibComponent() {
         this._country = 'GB';
-        this._preferred_countries = ['GB'];
+        this._preferred_countries = [];
+        this.inputClasses = '';
+        this.selectClasses = '';
         this.countries = [];
         this.selected_country = null;
         this.mobile_number = '';
         this.propagateChange = function (_) {
         };
     }
-    /**
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-    function () {
+    MobileFieldLibComponent_1 = MobileFieldLibComponent;
+    MobileFieldLibComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.countries = COUNTRIES.filter(function (i) { return _this._preferred_countries.indexOf(i.code) !== -1; });
-        this.selected_country = this.countries[0];
+        if (this.preferredCountries.length) {
+            this.countries = _countries__WEBPACK_IMPORTED_MODULE_1__["COUNTRIES"].filter(function (i) { return _this._preferred_countries.indexOf(i.code) !== -1; });
+        }
+        else {
+            this.countries = _countries__WEBPACK_IMPORTED_MODULE_1__["COUNTRIES"];
+        }
+        this.selected_country = this.findCountryByCode(this.country);
     };
     Object.defineProperty(MobileFieldLibComponent.prototype, "country", {
-        get: /**
-         * @return {?}
-         */
-        function () {
+        get: function () {
             return this._country;
         },
-        set: /**
-         * @param {?} c
-         * @return {?}
-         */
-        function (c) {
+        set: function (c) {
             this.selected_country = this.findCountryByCode(c);
             this._country = c;
         },
@@ -549,33 +552,17 @@ var MobileFieldLibComponent = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(MobileFieldLibComponent.prototype, "preferredCountries", {
-        get: /**
-         * @return {?}
-         */
-        function () {
+        get: function () {
             return this._preferred_countries;
         },
-        set: /**
-         * @param {?} c
-         * @return {?}
-         */
-        function (c) {
+        set: function (c) {
             this._preferred_countries = c;
         },
         enumerable: true,
         configurable: true
     });
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.writeValue = /**
-     * @param {?} value
-     * @return {?}
-     */
-    function (value) {
+    MobileFieldLibComponent.prototype.writeValue = function (value) {
         if (value !== undefined) {
-            /** @type {?} */
             var country = this.findCountryByNumber(value.toString(), 3);
             if (country) {
                 this.selected_country = country;
@@ -583,63 +570,23 @@ var MobileFieldLibComponent = /** @class */ (function () {
             }
         }
     };
-    /**
-     * @param {?} code
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.findCountryByCode = /**
-     * @param {?} code
-     * @return {?}
-     */
-    function (code) {
-        var e_1, _a;
-        try {
-            for (var _b = __values(this.countries), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var country = _c.value;
-                if (country.code === code.toLocaleUpperCase()) {
-                    return country;
-                    break;
-                }
-            }
+    MobileFieldLibComponent.prototype.findCountryByCode = function (code) {
+        code = code.toLocaleUpperCase();
+        if (this.countries.length) {
+            return this.countries.reduce(function (p, c) { return (c.code === code) ? c : p; });
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_1) throw e_1.error; }
+        else {
+            return this.countries[0];
         }
-        return this.countries[233];
     };
-    /**
-     * @param {?} number
-     * @param {?} max_dial_code_len
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.findCountryByNumber = /**
-     * @param {?} number
-     * @param {?} max_dial_code_len
-     * @return {?}
-     */
-    function (number, max_dial_code_len) {
-        var e_2, _a;
-        /** @type {?} */
-        var dial_code = number.substr(0, max_dial_code_len);
-        try {
-            for (var _b = __values(this.countries), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var country = _c.value;
-                if (country.dial_code === ('+' + dial_code)) {
-                    return country;
-                    break;
-                }
+    MobileFieldLibComponent.prototype.findCountryByNumber = function (number, max_dial_code_len) {
+        var dial_code = '+' + number.substr(0, max_dial_code_len);
+        for (var _i = 0, _a = this.countries; _i < _a.length; _i++) {
+            var country = _a[_i];
+            if (country.dial_code === dial_code) {
+                return country;
+                break;
             }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_2) throw e_2.error; }
         }
         if (max_dial_code_len > 1) {
             this.findCountryByNumber(number, max_dial_code_len - 1);
@@ -648,33 +595,12 @@ var MobileFieldLibComponent = /** @class */ (function () {
             return null;
         }
     };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.registerOnChange = /**
-     * @param {?} fn
-     * @return {?}
-     */
-    function (fn) {
+    MobileFieldLibComponent.prototype.registerOnChange = function (fn) {
         this.propagateChange = fn;
     };
-    /**
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.registerOnTouched = /**
-     * @return {?}
-     */
-    function () {
+    MobileFieldLibComponent.prototype.registerOnTouched = function () {
     };
-    /**
-     * @return {?}
-     */
-    MobileFieldLibComponent.prototype.change = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
+    MobileFieldLibComponent.prototype.change = function () {
         var value = '';
         if (this.mobile_number.length > 2) {
             value = this.selected_country.dial_code + this.mobile_number;
@@ -682,60 +608,287 @@ var MobileFieldLibComponent = /** @class */ (function () {
         this.propagateChange(value);
         console.log(value);
     };
-    MobileFieldLibComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'mfl-mobile-field-lib',
-                    template: "\n      <div class=\"mfl-wrapper\">\n          <div class=\"mfl-select-menu\">\n              <select [(ngModel)]=\"selected_country\" (change)=\"change()\">\n                  <option *ngFor=\"let country of countries\" [ngValue]=\"country\">{{country.name}}</option>\n              </select>\n          </div>\n          <div class=\"input-box\">\n              <span class=\"dial-code\">{{selected_country.flag}} {{selected_country.dial_code}}</span>\n              <input type=\"text\" [(ngModel)]=\"mobile_number\" numbersOnly=\"\" (change)=\"change()\">\n          </div>\n      </div>\n  ",
-                    providers: [
-                        {
-                            provide: NG_VALUE_ACCESSOR,
-                            useExisting: forwardRef(function () { return MobileFieldLibComponent; }),
-                            multi: true
-                        }
-                    ],
-                    styles: ["\n          .mfl-wrapper {\n              min-width: 320px;\n              display: flex;\n          }\n\n          select {\n              width: 100%;\n          }\n\n          input {\n              text-indent: 50px;\n              width: 100%;\n          }\n\n          span.dial-code {\n              position: absolute;\n              top: 2px;\n              padding-left: 10px;\n              color: #999;\n              font-size: 0.8em;\n          }\n\n          .mfl-select-menu {\n              width: 28%;\n              min-width: 120px;\n          }\n\n          .input-box {\n              width: 72%;\n              min-width: 200px;\n              position: relative;\n          }\n    "]
-                }] }
-    ];
-    /** @nocollapse */
-    MobileFieldLibComponent.ctorParameters = function () { return []; };
-    MobileFieldLibComponent.propDecorators = {
-        country: [{ type: Input }],
-        preferredCountries: [{ type: Input }]
-    };
+    var MobileFieldLibComponent_1;
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], MobileFieldLibComponent.prototype, "inputClasses", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], MobileFieldLibComponent.prototype, "selectClasses", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [String])
+    ], MobileFieldLibComponent.prototype, "country", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [Array])
+    ], MobileFieldLibComponent.prototype, "preferredCountries", null);
+    MobileFieldLibComponent = MobileFieldLibComponent_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'mfl-mobile-field-lib',
+            template: "\n      <div class=\"mfl-wrapper\">\n          <div class=\"mfl-select-menu\">\n              <select [(ngModel)]=\"selected_country\" (change)=\"change()\" [ngClass]=\"selectClasses\">\n                  <option *ngFor=\"let country of countries\" [ngValue]=\"country\">{{country.name}}</option>\n              </select>\n          </div>\n          <div class=\"dial-code\">{{selected_country.flag}} {{selected_country.dial_code}}</div>\n          <div class=\"input-box\">\n              <input type=\"number\" [(ngModel)]=\"mobile_number\" numbersOnly=\"\" (change)=\"change()\"\n                     [ngClass]=\"inputClasses\">\n          </div>\n      </div>\n  ",
+            styles: [
+                "\n          .mfl-wrapper {\n              width: 100%;\n              display: flex;\n              border: 1px solid #eee;\n              border-radius: 5px;\n          }\n\n          select {\n              height: 30px;\n              width: 100%;\n              border: none;\n              outline: none;\n              padding: 0px 5px;\n          }\n\n          input {\n              outline: none;\n              padding: 7px 5px 8px 5px;\n              border: none;\n              width: 100%;\n              border-radius: 5px;\n              box-sizing: border-box;\n          }\n\n          div.dial-code {\n              padding: 3px 10px 3px 10px;\n              color: #999;\n              font-size: 0.8em;\n              min-width: 50px;\n          }\n\n          .mfl-select-menu {\n              flex-grow: 4;\n          }\n\n          .input-box {\n              flex-grow: 7;\n          }\n    "
+            ],
+            providers: [
+                {
+                    provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
+                    useExisting: Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function () { return MobileFieldLibComponent_1; }),
+                    multi: true
+                }
+            ]
+        }),
+        __metadata("design:paramtypes", [])
+    ], MobileFieldLibComponent);
     return MobileFieldLibComponent;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
+
+
+/***/ }),
+
+/***/ "./projects/mobile-field-lib/src/lib/mobile-field-lib.module.ts":
+/*!**********************************************************************!*\
+  !*** ./projects/mobile-field-lib/src/lib/mobile-field-lib.module.ts ***!
+  \**********************************************************************/
+/*! exports provided: MobileFieldLibModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MobileFieldLibModule", function() { return MobileFieldLibModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _mobile_field_lib_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mobile-field-lib.component */ "./projects/mobile-field-lib/src/lib/mobile-field-lib.component.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
 var MobileFieldLibModule = /** @class */ (function () {
     function MobileFieldLibModule() {
     }
-    MobileFieldLibModule.decorators = [
-        { type: NgModule, args: [{
-                    imports: [
-                        FormsModule,
-                        ReactiveFormsModule,
-                        BrowserModule
-                    ],
-                    declarations: [MobileFieldLibComponent],
-                    exports: [MobileFieldLibComponent]
-                },] }
-    ];
+    MobileFieldLibModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"]
+            ],
+            declarations: [_mobile_field_lib_component__WEBPACK_IMPORTED_MODULE_2__["MobileFieldLibComponent"]],
+            exports: [_mobile_field_lib_component__WEBPACK_IMPORTED_MODULE_2__["MobileFieldLibComponent"]]
+        })
+    ], MobileFieldLibModule);
     return MobileFieldLibModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+
+
+/***/ }),
+
+/***/ "./src/$$_lazy_route_resource lazy recursive":
+/*!**********************************************************!*\
+  !*** ./src/$$_lazy_route_resource lazy namespace object ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncaught exception popping up in devtools
+	return Promise.resolve().then(function() {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+
+/***/ }),
+
+/***/ "./src/app/app.component.css":
+/*!***********************************!*\
+  !*** ./src/app/app.component.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/app.component.html":
+/*!************************************!*\
+  !*** ./src/app/app.component.html ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"text-align:center\">\n  <h1>\n    Test mobile field library\n  </h1>\n</div>\n<div style=\"max-width: 500px; margin: auto; padding: 2em; \">\n  <mfl-mobile-field-lib [country]=\"'GB'\" [preferredCountries]=\"['US', 'GB', 'NO']\"></mfl-mobile-field-lib>\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/app.component.ts":
+/*!**********************************!*\
+  !*** ./src/app/app.component.ts ***!
+  \**********************************/
+/*! exports provided: AppComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var AppComponent = /** @class */ (function () {
+    function AppComponent() {
+        this.title = 'mobile-field-app';
+    }
+    AppComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-root',
+            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
+            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
+        })
+    ], AppComponent);
+    return AppComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/app.module.ts":
+/*!*******************************!*\
+  !*** ./src/app/app.module.ts ***!
+  \*******************************/
+/*! exports provided: AppModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _projects_mobile_field_lib_src_lib_mobile_field_lib_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../projects/mobile-field-lib/src/lib/mobile-field-lib.module */ "./projects/mobile-field-lib/src/lib/mobile-field-lib.module.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [
+                _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]
+            ],
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _projects_mobile_field_lib_src_lib_mobile_field_lib_module__WEBPACK_IMPORTED_MODULE_3__["MobileFieldLibModule"]
+            ],
+            providers: [],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/environments/environment.ts":
+/*!*****************************************!*\
+  !*** ./src/environments/environment.ts ***!
+  \*****************************************/
+/*! exports provided: environment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+var environment = {
+    production: false
+};
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
  */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 
-export { MobileFieldLibService, MobileFieldLibComponent, MobileFieldLibModule };
+/***/ }),
 
-//# sourceMappingURL=mobile-field-lib.js.map
+/***/ "./src/main.ts":
+/*!*********************!*\
+  !*** ./src/main.ts ***!
+  \*********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+}
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
+    .catch(function (err) { return console.log(err); });
+
+
+/***/ }),
+
+/***/ 0:
+/*!***************************!*\
+  !*** multi ./src/main.ts ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /home/travis/build/w3bit/ngx-mobile-field-lib/src/main.ts */"./src/main.ts");
+
+
+/***/ })
+
+},[[0,"runtime","vendor"]]]);
+//# sourceMappingURL=main.js.map
