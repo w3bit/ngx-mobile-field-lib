@@ -204,7 +204,7 @@ var COUNTRIES = [
     { 'name': 'India', 'dial_code': '+91', 'code': 'IN', 'flag': '🇮🇳' },
     { 'name': 'Indonesia', 'dial_code': '+62', 'code': 'ID', 'flag': '🇮🇩' },
     {
-        'name': 'Iran, Islamic Republic of',
+        'name': 'Iran',
         'dial_code': '+98',
         'code': 'IR',
         'flag': '🇮🇷'
@@ -632,7 +632,7 @@ var MobileFieldLibComponent = /** @class */ (function () {
             selector: 'mfl-mobile-field-lib',
             template: "\n      <div class=\"mfl-wrapper\">\n          <div class=\"mfl-select-menu\">\n              <select [(ngModel)]=\"selected_country\" (change)=\"change()\" [ngClass]=\"selectClasses\">\n                  <option *ngFor=\"let country of countries\" [ngValue]=\"country\">{{country.name}}</option>\n              </select>\n          </div>\n          <div class=\"dial-code\">{{selected_country.flag}} {{selected_country.dial_code}}</div>\n          <div class=\"input-box\">\n              <input type=\"number\" [(ngModel)]=\"mobile_number\" numbersOnly=\"\" (change)=\"change()\"\n                     [ngClass]=\"inputClasses\">\n          </div>\n      </div>\n  ",
             styles: [
-                "\n          .mfl-wrapper {\n              width: 100%;\n              display: flex;\n              border: 1px solid #eee;\n              border-radius: 5px;\n          }\n\n          select {\n              height: 30px;\n              width: 100%;\n              border: none;\n              outline: none;\n              padding: 0px 5px;\n          }\n\n          input {\n              outline: none;\n              padding: 7px 5px 8px 5px;\n              border: none;\n              width: 100%;\n              border-radius: 5px;\n              box-sizing: border-box;\n          }\n\n          div.dial-code {\n              padding: 3px 10px 3px 10px;\n              color: #999;\n              font-size: 0.8em;\n              min-width: 50px;\n          }\n\n          .mfl-select-menu {\n              flex-grow: 4;\n          }\n\n          .input-box {\n              flex-grow: 7;\n          }\n    "
+                "\n          .mfl-wrapper {\n              width: 100%;\n              display: flex;\n              border: 1px solid #eee;\n              border-radius: 5px;\n              direction: ltr;\n          }\n\n          select {\n              height: 100%;\n              width: 100%;\n              border: none;\n              outline: none;\n              padding: 0px 5px;\n          }\n\n          input {\n              outline: none;\n              padding: 7px 5px 8px 5px;\n              border: none;\n              width: 100%;\n              border-radius: 5px;\n              box-sizing: border-box;\n          }\n\n          div.dial-code {\n              padding: 3px 10px 3px 10px;\n              color: #999;\n              font-size: 0.8em;\n              min-width: 50px;\n          }\n\n          .mfl-select-menu {\n              flex-grow: 4;\n          }\n\n          .input-box {\n              flex-grow: 7;\n          }\n    "
             ],
             providers: [
                 {
