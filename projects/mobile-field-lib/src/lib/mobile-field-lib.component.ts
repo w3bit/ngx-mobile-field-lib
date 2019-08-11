@@ -12,7 +12,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
               </select>
           </div>
           <div class="input-box">
-              <span class="dial-code">{{selected_country.dial_code}}</span>
+              <span class="dial-code">{{selected_country.flag}} {{selected_country.dial_code}}</span>
               <input type="text" [(ngModel)]="mobile_number" numbersOnly="" (change)="change()">
           </div>
       </div>
@@ -60,15 +60,18 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 })
 export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
 
-  private _country: string = 'UK';
+  private _country: string = 'GB';
+  private _preferred_countries = ['GB'];
 
-  countries = COUNTRIES;
-  selected_country = this.countries[233];
+  countries = [];
+  selected_country = null;
   mobile_number = '';
 
   constructor() { }
 
   ngOnInit() {
+    this.countries = COUNTRIES.filter(i => this._preferred_countries.indexOf(i.code) !== -1 );
+    this.selected_country = this.countries[0];
   }
 
   get country(): string {
@@ -79,6 +82,15 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
   set country(c: string) {
       this.selected_country = this.findCountryByCode(c);
       this._country = c;
+  }
+
+  get preferredCountries(): string[] {
+    return this._preferred_countries;
+  }
+
+  @Input()
+  set preferredCountries(c: string[]) {
+    this._preferred_countries = c;
   }
 
   writeValue(value: any) {

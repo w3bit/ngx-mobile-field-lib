@@ -192,7 +192,7 @@ export const COUNTRIES = [
     { "name": "India", "dial_code": "+91", "code": "IN", "flag": "🇮🇳" },
     { "name": "Indonesia", "dial_code": "+62", "code": "ID", "flag": "🇮🇩" },
     {
-        "name": "Iran, Islamic Republic of Persian Gulf",
+        "name": "Iran, Islamic Republic of",
         "dial_code": "+98",
         "code": "IR",
         "flag": "🇮🇷"
