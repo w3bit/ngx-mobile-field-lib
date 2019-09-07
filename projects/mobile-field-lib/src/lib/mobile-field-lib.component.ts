@@ -113,6 +113,7 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
 
   writeValue(value: any) {
     if (value !== undefined) {
+      value = value.replace('+','');
       const country = this.findCountryByNumber(value.toString(), 3);
       if (country) {
         this.selected_country = country;
@@ -130,16 +131,15 @@ export class MobileFieldLibComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  findCountryByNumber(number: string, max_dial_code_len: number) {
+  findCountryByNumber(number: string, max_dial_code_len: number): any {
     const dial_code = '+' + number.substr(0, max_dial_code_len);
     for (const country of this.countries) {
       if (country.dial_code === dial_code) {
         return country;
-        break;
       }
     }
     if (max_dial_code_len > 1) {
-      this.findCountryByNumber(number, max_dial_code_len - 1);
+      return this.findCountryByNumber(number, max_dial_code_len - 1);
     } else {
       return null;
     }
