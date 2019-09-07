@@ -562,6 +562,7 @@ var MobileFieldLibComponent = /** @class */ (function () {
     });
     MobileFieldLibComponent.prototype.writeValue = function (value) {
         if (value !== undefined) {
+            value = value.replace('+', '');
             var country = this.findCountryByNumber(value.toString(), 3);
             if (country) {
                 this.selected_country = country;
@@ -584,11 +585,10 @@ var MobileFieldLibComponent = /** @class */ (function () {
             var country = _a[_i];
             if (country.dial_code === dial_code) {
                 return country;
-                break;
             }
         }
         if (max_dial_code_len > 1) {
-            this.findCountryByNumber(number, max_dial_code_len - 1);
+            return this.findCountryByNumber(number, max_dial_code_len - 1);
         }
         else {
             return null;
